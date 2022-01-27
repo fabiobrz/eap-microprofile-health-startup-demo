@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>eap-microprofile-health-startup-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <version.org.jboss.eap.jboss-eap-xp-microprofile>4.0.0.GA-redhat-20220106</version.org.jboss.eap.jboss-eap-xp-microprofile>
+        <version.junit>4.13.1</version.junit>
+        <version.io.rest-assured>4.4.0</version.io.rest-assured>
+        <version.org.jboss.arquillian>1.5.0.Final</version.org.jboss.arquillian>
+        <version.org.wildfly.arquillian>3.0.1.Final</version.org.wildfly.arquillian>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.eap</groupId>
+                <artifactId>jboss-eap-xp-microprofile</artifactId>
+                <version>${version.org.jboss.eap.jboss-eap-xp-microprofile}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <!-- Add the MicroProfile Health API. Set provided for the <scope> tag, as the API is included in the server. -->
+        <dependency>
+            <groupId>org.eclipse.microprofile.health</groupId>
+            <artifactId>microprofile-health-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Add the {JAX-RS} API. Set provided for the <scope> tag, as the API is included in the server. -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Add the CDI API. Set provided for the <scope> tag, as the API is included in the server. -->
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- test dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${version.io.rest-assured}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>${version.org.jboss.arquillian}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-container-managed</artifactId>
+            <version>${version.org.wildfly.arquillian}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
